@@ -1,0 +1,8 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+
+        <add id="Crossover_Api::list"     title="Crossover"  module="Crossover_Api" sortOrder="10" resource="Crossover_Api::list"/>
+        <add id="Crossover_Api::settings" title="Settings"   module="Crossover_Api" sortOrder="1"  parent="Crossover_Api::list" action="crossover/crossover/index" resource="Crossover_Api::settings"/>
+        <add id="Crossover_Api::data"     title="Data"       module="Crossover_Api" sortOrder="2"  parent="Crossover_Api::list" action="crossover/crossover/form"  resource="Crossover_Api::data"/>
+    </menu>
+</config>

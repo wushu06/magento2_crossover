@@ -1,0 +1,81 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->create('\Magento\Store\Model\StoreManagerInterface');
+$baseURL_l = $social_image_url = $storeManager->getStore()->getBaseUrl();
+?>
+<form action="<?php /* @escapeNotVerified */
+echo $this->getUrl('crossover/crossover/post') ?>" method="post" id="form-validate" enctype="multipart/form-data"
+      autocomplete="off" data-mage-init='{"validation":{}}' data-hasrequired="<?php /* @escapeNotVerified */
+echo __('* Required Fields') ?>">
+    <div class="field required">
+        <label for="username" class="label"><span><?php /* @escapeNotVerified */
+                echo __('Name') ?></span><span class="span">*</span></label>
+        <div class="control">
+            <input type="text" name="username" id="crossover_name" value=""
+                   title="<?php /* @escapeNotVerified */
+                   echo __('user name') ?>" class="input-text">
+        </div>
+    </div>
+    <br/>
+    <div class="field required">
+        <label for="password" class="label"><span><?php /* @escapeNotVerified */
+                echo __('password') ?></span><span class="span">*</span></label>
+        <div class="control">
+            <input type="password" name="password" id="password" value="" title="<?php /* @escapeNotVerified */
+            echo __('Password') ?>" class="input-text">
+        </div>
+    </div>
+    <br/>
+    <div class="field required">
+        <label for="url" class="label"><span><?php /* @escapeNotVerified */
+                echo __('URL') ?></span><span class="span">*</span></label>
+        <div class="control">
+            <input type="text" name="url" id="url" value="" title="<?php /* @escapeNotVerified */
+            echo __('URL') ?>" class="input-text">
+        </div>
+    </div>
+    <br/>
+
+<br>
+    <div class="primary">
+        <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */
+        echo __('Submit') ?>"><span><?php /* @escapeNotVerified */
+                echo __('Submit') ?></span></button>
+    </div>
+    <div><input name="form_key" type="hidden" value="<?php /* @escapeNotVerified */
+        echo $block->getFormKey() ?>"/></div>
+
+
+</form>
+
+
+<table class="data-grid data-grid-draggable" data-role="grid">
+    <thead>
+    <tr>
+        <th class="data-grid-th _sortable _draggable _descend">Id</th>
+        <th class="data-grid-th _sortable _draggable _descend">username</th>
+        <th class="data-grid-th _sortable _draggable _descend">password</th>
+        <th class="data-grid-th _sortable _draggable _descend">url</th>
+        <th class="data-grid-th _sortable _draggable _descend"> edit</th>
+        <th class="data-grid-th _sortable _draggable _descend"> delete</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <?php
+    foreach ($block->getCustomData() as $key => $post) {
+        $actionEdit = $this->getUrl('crossover/crossover/edit/id/' . $post['id']);
+        $actionDelete = $this->getUrl('crossover/crossover/delete/id/' . $post['id']);
+        echo '<tr class="data-row">
+                    <td>' . $post['id'] . '</td>
+                    <td>' . $post['username'] . '</td>
+                    <td>' . $post['password'] . '</td>
+                    <td>' . $post['url'] . '</td>
+                     <td class="post-name"><a href="' . $actionEdit . '"> edit</a></td>
+                     <td class="post-name"><a href="' . $actionDelete . '"> delete</a></td>
+
+                  </tr>';
+    }
+    ?>
+    </tbody>
+</table>
